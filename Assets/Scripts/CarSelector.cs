@@ -1,11 +1,13 @@
 using TMPro;
 using UnityEngine;
+using Unity.Cinemachine;
 
 [System.Serializable]
 public class CarModel
 {
     public string ModelName;
     public GameObject carPrefab;
+    public CinemachineCamera carCamera;
 }
 
 public class CarSelector : MonoBehaviour
@@ -14,11 +16,10 @@ public class CarSelector : MonoBehaviour
     [Tooltip("Assign the UI TextMeshPro element that displays the name")]
     [SerializeField] private TextMeshProUGUI modelNameText;
     [SerializeField] private CarModel[] carModels;
-    [SerializeField] private Camera mainCamera;
 
     void Start()
     {
-        CarSelection(0);
+        DisableAllCarSelection();
     }
 
     // Update is called once per frame
@@ -35,7 +36,7 @@ public class CarSelector : MonoBehaviour
         }
     }
 
-    void CarSelection(int CarIndex)
+    public void CarSelection(int CarIndex)
     {
         if (CarIndex < 0 || CarIndex >= carModels.Length)
         {
@@ -47,12 +48,24 @@ public class CarSelector : MonoBehaviour
         {
             if (carModels[i].carPrefab != null && i == CarIndex)
             {
+                carModels[i].carCamera.Priority = 10;
                 carModels[i].carPrefab.GetComponent<CarUpgradeManager>().enabled = true;
-                mainCamera.transform.position = carModels[i].carPrefab.transform.position + new Vector3(-1f, 1f, -10f);
                 modelNameText.text = carModels[i].ModelName;
                 Debug.Log("Selected car: " + carModels[i].ModelName);
             }
             else if (carModels[i].carPrefab != null)
+            {
+                carModels[i].carCamera.Priority = 0;
+                carModels[i].carPrefab.GetComponent<CarUpgradeManager>().enabled = false;
+            }
+        }
+    }
+
+   public void DisableAllCarSelection()
+    {
+        for (int i = 0; i < carModels.Length; i++)
+        {
+            if (carModels[i].carPrefab != null)
             {
                 carModels[i].carPrefab.GetComponent<CarUpgradeManager>().enabled = false;
             }

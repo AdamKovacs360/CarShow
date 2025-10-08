@@ -36,28 +36,9 @@ public class CarUpgradeManager : MonoBehaviour
 
     void Start()
     {
-        maxGroups = carPartGroups.Length;
-
-        for (int i = 0; i < carPartGroups.Length; i++)
-        {
-            if (carPartGroups[i].Options == null || carPartGroups[i].Options.Length == 0)
-            {
-                Debug.LogError($"Part group '{carPartGroups[i].PartName}' has no options assigned.");
-                continue;
-            }
-            carPartGroups[i].partNameText.text = carPartGroups[i].PartName;
-
-            if (carPartGroups[i].partNameText != null)
-            {
-                carPartGroups[i].partNameText.text = carPartGroups[i].PartName;
-            }
-            currentGroupIndex = i;
-            ApplyPart(i, 0);
-        }
-
-        HighlightCurrentGroup();
+        InitializeCarParts();
         UpdateArrayText();
-        Debug.Log("Selected part group: " + carPartGroups[currentGroupIndex].PartName);
+        HighlightCurrentGroup();
     }
 
     void Update()
@@ -81,18 +62,29 @@ public class CarUpgradeManager : MonoBehaviour
         {
             CycleOption(-1);
         }
-
-        // Rotate car
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            RotateCar(1);
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            RotateCar(-1);
-        }
     }
 
+    void InitializeCarParts()
+    {
+        maxGroups = carPartGroups.Length;
+
+        for (int i = 0; i < carPartGroups.Length; i++)
+        {
+            if (carPartGroups[i].Options == null || carPartGroups[i].Options.Length == 0)
+            {
+                Debug.LogError($"Part group '{carPartGroups[i].PartName}' has no options assigned.");
+                continue;
+            }
+            carPartGroups[i].partNameText.text = carPartGroups[i].PartName;
+
+            if (carPartGroups[i].partNameText != null)
+            {
+                carPartGroups[i].partNameText.text = carPartGroups[i].PartName;
+            }
+            currentGroupIndex = i;
+            ApplyPart(i, 0);
+        }
+    }
     void CycleOption(int direction)
     {
         CarPartGroup group = carPartGroups[currentGroupIndex];
@@ -145,10 +137,5 @@ public class CarUpgradeManager : MonoBehaviour
         {
             arreySizeText.text = "0/0";
         }
-    }
-
-    void RotateCar(int direction)
-    {
-        carModel.transform.Rotate(Vector3.up, direction * 100f * Time.deltaTime);
     }
 }
