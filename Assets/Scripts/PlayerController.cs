@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CinemachineCamera PlayerCamera;
     [SerializeField] private GameObject carSelectionCanvas;
     [SerializeField] private CarSelector _carSelector; // Changed type from GameObject to CarSelector
+    [SerializeField] private GameObject interactionCanvas;
     private float moveSpeed = 5f;
     CharacterController controller;
     private bool isPlayerActive;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
         isPlayerActive = true;
         isPlayerInTrigger = false;
         carSelectionCanvas.SetActive(false);
+        interactionCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -91,6 +93,11 @@ public class PlayerController : MonoBehaviour
         {
             isPlayerInTrigger = true;
             Debug.Log("Player is inside trigger area");
+
+            if (isPlayerActive)
+            {
+                interactionCanvas.SetActive(true);
+            }
         }
     }
     public void OnTriggerExit(Collider other)
@@ -98,6 +105,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Trigger"))
         {
             isPlayerInTrigger = false;
+            interactionCanvas.SetActive(false);
             Debug.Log("Player exited trigger area");
         }
     }
@@ -117,6 +125,7 @@ public class PlayerController : MonoBehaviour
     void EnterToCarSelection()
     {
         Debug.Log("Entered car selection");
+        interactionCanvas.SetActive(false);
         _carSelector.enabled = true;
         isPlayerActive = false;
         carSelectionCanvas.SetActive(true);
