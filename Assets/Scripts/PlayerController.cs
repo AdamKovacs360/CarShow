@@ -9,13 +9,17 @@ public class PlayerController : MonoBehaviour
     private Transform playerTransform;
     [SerializeField] private CinemachineCamera carSelectorCamera;
     [SerializeField] private CinemachineCamera PlayerCamera;
+    [SerializeField] private CinemachineCamera menuCamera;
+    [SerializeField] private GameObject menuCanvas;
     [SerializeField] private GameObject carSelectionCanvas;
     [SerializeField] private CarSelector _carSelector; // Changed type from GameObject to CarSelector
     [SerializeField] private GameObject interactionCanvas;
     private float moveSpeed = 5f;
     CharacterController controller;
-    private bool isPlayerActive;
+    public bool isPlayerActive;
     private bool isPlayerInTrigger;
+
+    private Animator animator;
 
     private void Awake()
     {
@@ -26,22 +30,18 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        PlayerCamera.Priority = 10;
         carSelectorCamera.Priority = 0;
-        isPlayerActive = true;
+        isPlayerActive = false;
         isPlayerInTrigger = false;
         carSelectionCanvas.SetActive(false);
         interactionCanvas.SetActive(false);
+        animator = GetComponent<Animator>();
+        animator.Play("Idle");
     }
 
     // Update is called once per frame
     void Update()
     {
-            //Exit car selection
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                ExitFromCarSelection();
-            }
 
         if (isPlayerInTrigger && Input.GetKeyDown(KeyCode.E))
             {
@@ -56,18 +56,22 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.W))
             {
                 inputDirection += Vector3.forward;
+                animator.SetBool("IsWalkingForward", true);
             }
             if (Input.GetKey(KeyCode.S))
             {
                 inputDirection += Vector3.back;
+                animator.SetBool("IsWalkingForward", true);
             }
             if (Input.GetKey(KeyCode.A))
             {
                 inputDirection += Vector3.left;
+                animator.SetBool("IsWalkingForward", true);
             }
             if (Input.GetKey(KeyCode.D))
             {
                 inputDirection += Vector3.right;
+                animator.SetBool("IsWalkingForward", true);
             }
 
             if(inputDirection.sqrMagnitude > 0.01f)
@@ -84,7 +88,31 @@ public class PlayerController : MonoBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
                 playerTransform.rotation = Quaternion.Slerp(playerTransform.rotation, targetRotation, Time.deltaTime * 10f);
             }
+
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+
+                ExitToMenu();
+            }
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPlayerActive)
+            {
+                ExitToMenu();
+            }
+            if (!isPlayerActive && !menuCanvas.activeSelf)
+            {
+                ExitFromCarSelection();
+            }
+        }
+
+        //Setting back the animation bool state to false on key release
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        {
+            animator.SetBool("IsWalkingForward", false);
+        }
+
 
     }
     public void OnTriggerStay(Collider other)
@@ -132,5 +160,13 @@ public class PlayerController : MonoBehaviour
         carSelectorCamera.Priority = 10;
         PlayerCamera.Priority = 0;
         _carSelector.CarSelection(0);
+    }
+
+    void ExitToMenu()
+    {
+        isPlayerActive = false;
+        menuCamera.Priority = 10;
+        PlayerCamera.Priority = 0;
+        menuCanvas.SetActive(true);
     }
 }
