@@ -273,7 +273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &411490444
 RectTransform:
   m_ObjectHideFlags: 0
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2053363070}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MyLegoAnimControllor, Assembly-CSharp
         m_MethodName: PlayLegoAnimatorJump
         m_Mode: 1
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2053363070}
+      - m_Target: {fileID: 1750277160}
         m_TargetAssemblyTypeName: MyLegoAnimControllor, Assembly-CSharp
         m_MethodName: PlayLegoAnimationWalk
         m_Mode: 1
@@ -521,6 +521,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 442245521}
   m_CullTransparentMesh: 1
+--- !u!1001 &532995256
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: dcbff0c4a20a0c043b6095ba55fd2bd1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dcbff0c4a20a0c043b6095ba55fd2bd1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dcbff0c4a20a0c043b6095ba55fd2bd1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dcbff0c4a20a0c043b6095ba55fd2bd1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dcbff0c4a20a0c043b6095ba55fd2bd1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dcbff0c4a20a0c043b6095ba55fd2bd1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dcbff0c4a20a0c043b6095ba55fd2bd1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dcbff0c4a20a0c043b6095ba55fd2bd1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dcbff0c4a20a0c043b6095ba55fd2bd1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dcbff0c4a20a0c043b6095ba55fd2bd1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dcbff0c4a20a0c043b6095ba55fd2bd1, type: 3}
+      propertyPath: m_Name
+      value: AdamLego3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dcbff0c4a20a0c043b6095ba55fd2bd1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1750277160}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dcbff0c4a20a0c043b6095ba55fd2bd1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1750277162}
+  m_SourcePrefab: {fileID: 100100000, guid: dcbff0c4a20a0c043b6095ba55fd2bd1, type: 3}
 --- !u!1 &704854373
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,13 +670,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704854373}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0, y: 0.17286164, z: -0, w: 0.98494613}
+  m_LocalPosition: {x: 0.11, y: 1, z: -2.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 19.908, z: 0}
 --- !u!114 &704854377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,69 +857,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 764983447}
   m_CullTransparentMesh: 1
---- !u!1001 &901704449
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 3be0b3eaf0561e54ca6c027eb595c285, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.73889935
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3be0b3eaf0561e54ca6c027eb595c285, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.46175957
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3be0b3eaf0561e54ca6c027eb595c285, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -6.580547
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3be0b3eaf0561e54ca6c027eb595c285, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.16889052
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3be0b3eaf0561e54ca6c027eb595c285, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 7.0694395e-17
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3be0b3eaf0561e54ca6c027eb595c285, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.98563486
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3be0b3eaf0561e54ca6c027eb595c285, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -5.0011227e-17
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3be0b3eaf0561e54ca6c027eb595c285, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3be0b3eaf0561e54ca6c027eb595c285, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -199.447
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3be0b3eaf0561e54ca6c027eb595c285, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 3be0b3eaf0561e54ca6c027eb595c285, type: 3}
-      propertyPath: m_Name
-      value: Lego Walk
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3be0b3eaf0561e54ca6c027eb595c285, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2053363068}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3be0b3eaf0561e54ca6c027eb595c285, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2053363070}
-  m_SourcePrefab: {fileID: 100100000, guid: 3be0b3eaf0561e54ca6c027eb595c285, type: 3}
 --- !u!1 &1530946494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,22 +1081,35 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &2053363067 stripped
+--- !u!1 &1750277159 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3be0b3eaf0561e54ca6c027eb595c285, type: 3}
-  m_PrefabInstance: {fileID: 901704449}
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: dcbff0c4a20a0c043b6095ba55fd2bd1, type: 3}
+  m_PrefabInstance: {fileID: 532995256}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &2053363068
+--- !u!114 &1750277160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750277159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb4bbb10cb50c1438389aa91abd440f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  legoAnimator: {fileID: 1750277162}
+--- !u!95 &1750277162
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2053363067}
+  m_GameObject: {fileID: 1750277159}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 523813a0110f3f547a226634f61005f1, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8bf60f6c2c95708439f0a77cfefeb7b2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1108,19 +1121,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2053363070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2053363067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deb4bbb10cb50c1438389aa91abd440f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  legoAnimator: {fileID: 2053363068}
 --- !u!1 &2113138248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,6 +1206,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 704854376}
   - {fileID: 1530946496}
-  - {fileID: 901704449}
   - {fileID: 1561548428}
   - {fileID: 2113138251}
+  - {fileID: 532995256}
