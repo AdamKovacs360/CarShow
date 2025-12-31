@@ -46,11 +46,11 @@ public class CarUpgradeManager : MonoBehaviour
         // Switch part group (e.g., tyres ? hood ? spoiler)
         if (Input.GetKeyDown(KeyCode.W))
         {
-            CycleCarPartGroups(1);
+            CycleCarPartGroups(-1);
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            CycleCarPartGroups(-1);
+            CycleCarPartGroups(1);
         }
 
         // Cycle options within the selected group
