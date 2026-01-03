@@ -8,20 +8,23 @@ public class CarPartGroup
     [Tooltip("E.g., Tyres, Hood, Spoiler")]
     public string PartName;
 
-    [Header("UI Reference")]
-    [Tooltip("Assign the UI TextMeshPro element that displays the part name")]
-    public TextMeshProUGUI partNameText;
-
     [Header("Part Variations")]
     [Tooltip("If this part has multiple objects, add them as a group")]
     public GameObject[] Options;
-    
+
     [HideInInspector] public int currentOptionIndex = 0;
     [HideInInspector] public int GroupSize => Options.Length;
+
+    public string GetPartName()
+    {
+        return PartName;
+    }
 }
 
 public class CarUpgradeManager : MonoBehaviour
 {
+    [SerializeField] private CarSelector CarSelection;
+
     [Header("UI References")]
     [Tooltip("Assign the UI TextMeshPro element that displays the array")]
     [SerializeField] private TextMeshProUGUI arreySizeText;
@@ -38,7 +41,7 @@ public class CarUpgradeManager : MonoBehaviour
     {
         InitializeCarParts();
         UpdateArrayText();
-        HighlightCurrentGroup();
+        CarSelection.HighlightCurrentGroup(GetCurrentGooupIndex());
     }
 
     void Update()
@@ -63,8 +66,7 @@ public class CarUpgradeManager : MonoBehaviour
             CycleOption(-1);
         }
     }
-
-    void InitializeCarParts()
+    public void InitializeCarParts()
     {
         maxGroups = carPartGroups.Length;
 
@@ -75,16 +77,11 @@ public class CarUpgradeManager : MonoBehaviour
                 Debug.LogError($"Part group '{carPartGroups[i].PartName}' has no options assigned.");
                 continue;
             }
-            carPartGroups[i].partNameText.text = carPartGroups[i].PartName;
-
-            if (carPartGroups[i].partNameText != null)
-            {
-                carPartGroups[i].partNameText.text = carPartGroups[i].PartName;
-            }
             currentGroupIndex = i;
             ApplyPart(i, 0);
         }
     }
+
     void CycleOption(int direction)
     {
         CarPartGroup group = carPartGroups[currentGroupIndex];
@@ -99,7 +96,7 @@ public class CarUpgradeManager : MonoBehaviour
     void CycleCarPartGroups(int direction)
     {
         currentGroupIndex = (currentGroupIndex + direction + maxGroups) % maxGroups;
-        HighlightCurrentGroup();
+        CarSelection.HighlightCurrentGroup(currentGroupIndex);
         UpdateArrayText();
         Debug.Log("Selected part group: " + carPartGroups[currentGroupIndex].PartName);
     }
@@ -110,17 +107,6 @@ public class CarUpgradeManager : MonoBehaviour
         {
             if (carPartGroups[groupIndex].Options[i] != null)
                 carPartGroups[groupIndex].Options[i].SetActive(i == optionIndex);
-        }
-    }
-
-    void HighlightCurrentGroup()
-    {
-        for (int i = 0; i < carPartGroups.Length; i++)
-        {
-            if (carPartGroups[i].partNameText != null)
-            {
-                carPartGroups[i].partNameText.color = (i == currentGroupIndex) ? Color.yellow : Color.white;
-            }
         }
     }
 
@@ -137,5 +123,10 @@ public class CarUpgradeManager : MonoBehaviour
         {
             arreySizeText.text = "0/0";
         }
+    }
+
+    public int GetCurrentGooupIndex()
+    {
+        return currentGroupIndex;
     }
 }

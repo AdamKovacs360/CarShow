@@ -1,7 +1,6 @@
 using UnityEngine;
 using Unity.Cinemachine;
 
-
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject player;
