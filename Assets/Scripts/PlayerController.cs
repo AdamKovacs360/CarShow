@@ -87,12 +87,6 @@ public class PlayerController : MonoBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
                 playerTransform.rotation = Quaternion.Slerp(playerTransform.rotation, targetRotation, Time.deltaTime * 10f);
             }
-
-            if(Input.GetKeyDown(KeyCode.Escape))
-            {
-
-                ExitToMenu();
-            }
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
