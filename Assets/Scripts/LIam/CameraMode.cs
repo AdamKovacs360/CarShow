@@ -12,7 +12,7 @@ public class CameraMode : MonoBehaviour
     public CameraPoint[] cameraPoints;
 
     [Header("Camera Controller")]
-    public MonoBehaviour cameraController; // drag your mouse look script here
+    public MonoBehaviour cameraController;
 
     [Header("Transition")]
     public float moveDuration = 0.8f;
@@ -29,8 +29,6 @@ public class CameraMode : MonoBehaviour
     void Start()
     {
         mainCam = Camera.main;
-        originalPosition = mainCam.transform.position;
-        originalRotation = mainCam.transform.rotation;
     }
 
     void Update()
@@ -43,21 +41,25 @@ public class CameraMode : MonoBehaviour
                 EnterCameraMode();
         }
 
+        if (inCameraMode && !isMoving)
+        {
+            if (Input.GetKeyDown(nextKey))
+                StartCoroutine(MoveToPoint((currentIndex + 1) % cameraPoints.Length));
+
+            if (Input.GetKeyDown(prevKey))
+                StartCoroutine(MoveToPoint((currentIndex - 1 + cameraPoints.Length) % cameraPoints.Length));
+        }
+
         if (inCameraMode)
             Input.ResetInputAxes();
-
-        if (!inCameraMode || isMoving) return;
-
-        if (Input.GetKeyDown(nextKey))
-            StartCoroutine(MoveToPoint((currentIndex + 1) % cameraPoints.Length));
-
-        if (Input.GetKeyDown(prevKey))
-            StartCoroutine(MoveToPoint((currentIndex - 1 + cameraPoints.Length) % cameraPoints.Length));
     }
 
     void EnterCameraMode()
     {
         inCameraMode = true;
+        originalPosition = mainCam.transform.position;
+        originalRotation = mainCam.transform.rotation;
+
         currentIndex = 0;
 
         if (cameraController != null)
